@@ -100,7 +100,9 @@ findBook(const vector<vector<int>> &files, const string &book)
 ```
 
 >Exercise 17.7: Explain which version of `findBook` you prefer and why.
+
 Of course the original version with the help of `pair`, we don't want to bother to define a data structure to represent those data.
 
 >Exercise 17.8: What would happen if we passed `Sales_data()` as the third parameter to `accumulate` in the last code example in this section?
+
 The object is default initialized, and addition function of 2 Sales_data objects checks if they refer to the same book. Apparently in this case it's not. Therefore it's 0.

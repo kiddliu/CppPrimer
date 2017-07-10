@@ -1,7 +1,7 @@
 Chapter 17 Specialized Library Facilities
 =========================================
 
-Section 17.1 The `Tuple` Type
+Section 17.1 The `tuple` Type
 -----------------------------
 
-[Tuple.md](https://github.com/kiddliu/CppPrimer/blob/master/Chapter17/Tuple.md)
+[tuple.md](https://github.com/kiddliu/CppPrimer/blob/master/Chapter17/tuple.md)

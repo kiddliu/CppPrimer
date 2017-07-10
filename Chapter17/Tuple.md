@@ -1,5 +1,5 @@
-Chapter 17
-============
+The `Tuple` Type
+================
 
 Exercises Section 17.1.1
 ------------------------

@@ -1,4 +1,4 @@
-The `Tuple` Type
+The `tuple` Type
 ================
 
 Exercises Section 17.1.1

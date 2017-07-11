@@ -6,7 +6,7 @@ Exercises Section 17.3.1
 
 >Exercise 17.14: Write several regular expressions designed to trigger various errors. Run your program to see what output your compiler generateds for each error.
 
-```
+```cpp
 try 
 {
     regex re;
@@ -22,7 +22,7 @@ catch (const regex_error &error)
 
 >Exercise 17.15: Write a program using the pattern that finds words that violate the "_i_ before _e_ except after _c_" rule. Have your program prompt the user to supply a word and indicate whether the word is okay or not. Test your program with words that do and do not violate the rule.
 
-```
+```cpp
 string word;
 regex re("[[:alpha:]]*([^c]ei)[[:alpha:]]*");
 
@@ -38,7 +38,7 @@ while (true)
 
 >Exercise 17.16: What would happen if your regex object in the previous program were initialized with "[^c]ei"? Test your program using that pattern to see whether your expectations were correct.
 
-```
+```cpp
 string word;
 regex re("[^c]ei");
 
@@ -60,7 +60,7 @@ Exercises Section 17.3.1
 
 >Exercise 17.18: Revise your program to ignore words that contain "ei" but are not misspellings, such as "albeit" and "neighbor".
 
-```
+```cpp
 string s;
 getline(cin, s);
 
@@ -84,7 +84,7 @@ The original version on page 740 is OK.
 
 >Exercise 17.21: Rewrite your phone number program from § 8.3.2 (p. 323) to use the `valid` function defined in this section.
 
-```
+```cpp
 bool valid(const string &num)
 {
     regex re("(\\()?(\\d{3})(\\))?([-. ])?(\\d{3})([-. ])?(\\d{4})");
@@ -96,14 +96,14 @@ bool valid(const string &num)
 
 >Exercise 17.22: Rewrite your phone program so that it allows any number of whitespace characters to seperate the three parts of a phone number.
 
-```
+```cpp
 regex re("(\\()?(\\d{3})(\\))?(\\s*)(\\d{3})(\\s*)(\\d{4})")
 ```
 
 >Exercise 17.23: Write a regular express to find zip codes. A zip code can have five or nine digits. The first five digits can be separated from the remaining four by a dash.
 
 
-```
+```cpp
 regex re("^\\d{5}(-\\d{4})?$")
 ```
 
@@ -114,7 +114,7 @@ Exercises Section 17.3.4
 
 >Exercise 17.25: Rewrite your phone program so that it writes only the first phone number for each person.
 
-```
+```cpp
 string s;
 s.append("morgan (201) 555-2368 862-555-0123\n");
 s.append("drew (973)555.0130\n");
@@ -133,7 +133,7 @@ while (getline(stream, line))
 
 >Exercise 17.26: Rewrite your phone program so that it writes only the second and subsequent phone numbers for people with more than one phone number.
 
-```
+```cpp
 string s;
 s.append("morgan (201) 555-2368 862-555-0123\n");
 s.append("drew (973)555.0130\n");
@@ -155,7 +155,7 @@ while (getline(stream, line))
 
 >Exercise 17.27: Write a program that reformats a nine-digit zip code as ddddd-dddd.
 
-```
+```cpp
 regex re("(\\d{5})([-. ])?(\\d{4})");
 string format("$1-$3");
 

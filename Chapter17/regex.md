@@ -70,3 +70,39 @@ for (sregex_iterator it(s.cbegin(), s.cend(), re), end; it != end; ++it)
     cout << it->str() << endl;
 }
 ```
+
+Exercises Section 17.3.3
+------------------------
+
+>Exercise 17.19: Why is it okay to call `m[4].str()` without first checking whether `m[4]` was matched?
+
+`bool valid(const smatch &m)` is only called when there is a match. In consideration that `m[4]` and `m[6]` is checking the delimeter, there are 2 circumstances: a) a candidate character is found, or b) no character there. For both cases we could use string comparison to check if they're the same.
+
+>Exercise 17.20: Write your own version of the program to validate phone numbers.
+
+The original version on page 740 is OK.
+
+>Exercise 17.21: Rewrite your phone number program from § 8.3.2 (p. 323) to use the `valid` function defined in this section.
+
+```
+bool valid(const string &num)
+{
+    regex re("(\\()?(\\d{3})(\\))?([-. ])?(\\d{3})([-. ])?(\\d{4})");
+    smatch match;
+    
+    return regex_match(num, match, re) && valid(match);
+}
+```
+
+>Exercise 17.22: Rewrite your phone program so that it allows any number of whitespace characters to seperate the three parts of a phone number.
+
+```
+regex re("(\\()?(\\d{3})(\\))?(\\s*)(\\d{3})(\\s*)(\\d{4})")
+```
+
+>Exercise 17.23: Write a regular express to find zip codes. A zip code can have five or nine digits. The first five digits can be separated from the remaining four by a dash.
+
+
+```
+regex re("^\\d{5}(-\\d{4})?$")
+```

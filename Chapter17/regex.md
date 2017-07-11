@@ -24,7 +24,7 @@ catch (const regex_error &error)
 
 ```
 string word;
-regex re("[[:alpha:]]*([^c]ie|cei)[[:alpha:]]*");
+regex re("[[:alpha:]]*([^c]ei)[[:alpha:]]*");
 
 while (true)
 {
@@ -32,7 +32,7 @@ while (true)
     cin >> word;
     if (word == "exit") break;
 
-    cout << "Word " << word << (regex_match(word, re) ? " is OK" : " is not OK") << endl;
+    cout << "Word " << word << (regex_match(word, re) ? " violates the spelling rule." : " is fine") << endl;
 }
 ```
 
@@ -51,4 +51,4 @@ while (true)
     cout << "Word " << word << (regex_match(word, re) ? " is OK" : " is not OK") << endl;
 }
 ```
-So the result is just the opposite to the correct answer.
+`regex_match` tries to match the whole string, and by removing the `[[:alpha:]]*` at the start and the end of the pattern, it tries to match the exact mispelling part. So `regex_search` is the much appropriate function to call with. 

@@ -10,3 +10,8 @@ Section 17.2 The `bitset` Type
 ------------------------------
 
 [bitset.md](https://github.com/kiddliu/CppPrimer/blob/master/Chapter17/bitset.md)
+
+Section 17.3 The `bitset` Type
+------------------------------
+
+[regex.md](https://github.com/kiddliu/CppPrimer/blob/master/Chapter17/regex.md)

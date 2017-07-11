@@ -15,3 +15,8 @@ Section 17.3 The `bitset` Type
 ------------------------------
 
 [regex.md](https://github.com/kiddliu/CppPrimer/blob/master/Chapter17/regex.md)
+
+Section 17.4 Random Numbers
+---------------------------
+
+[random.md](https://github.com/kiddliu/CppPrimer/blob/master/Chapter17/random.md)

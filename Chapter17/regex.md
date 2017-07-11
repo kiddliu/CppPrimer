@@ -106,3 +106,63 @@ regex re("(\\()?(\\d{3})(\\))?(\\s*)(\\d{3})(\\s*)(\\d{4})")
 ```
 regex re("^\\d{5}(-\\d{4})?$")
 ```
+
+Exercises Section 17.3.4
+------------------------
+
+>Exercise 17.24: Write your own version of the program to reformat phone numbers.
+
+>Exercise 17.25: Rewrite your phone program so that it writes only the first phone number for each person.
+
+```
+string s;
+s.append("morgan (201) 555-2368 862-555-0123\n");
+s.append("drew (973)555.0130\n");
+s.append("lee (609) 555-0132 2015550175 800.555-0000\n");
+istringstream stream(s);
+
+regex re("(\\()?(\\d{3})(\\))?([-. ])?(\\d{3})([-. ])?(\\d{4})");
+string format("$2.$5.$7");
+
+string line;
+while (getline(stream, line))
+{
+    cout << regex_replace(line, re, format, format_first_only | format_no_copy) << endl;
+}
+```
+
+>Exercise 17.26: Rewrite your phone program so that it writes only the second and subsequent phone numbers for people with more than one phone number.
+
+```
+string s;
+s.append("morgan (201) 555-2368 862-555-0123\n");
+s.append("drew (973)555.0130\n");
+s.append("lee (609) 555-0132 2015550175 800.555-0000\n");
+istringstream stream(s);
+
+regex re("(\\()?(\\d{3})(\\))?([-. ])?(\\d{3})([-. ])?(\\d{4})");
+string format("$2.$5.$7 ");
+
+string line;
+
+while (getline(stream, line))
+{
+    string result(regex_replace(line, re, format, format_no_copy));
+
+    if (result.size() > 13) cout << result.substr(13) << endl; // if there's more than 1 number let's output it
+}
+```
+
+>Exercise 17.27: Write a program that reformats a nine-digit zip code as ddddd-dddd.
+
+```
+regex re("(\\d{5})([-. ])?(\\d{4})");
+string format("$1-$3");
+
+string line;
+
+while (getline(cin, line))
+{
+    cout << regex_replace(line, re, format, format_no_copy)) << endl;
+}
+```

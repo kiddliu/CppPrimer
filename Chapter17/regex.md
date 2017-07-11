@@ -52,3 +52,21 @@ while (true)
 }
 ```
 `regex_match` tries to match the whole string, and by removing the `[[:alpha:]]*` at the start and the end of the pattern, it tries to match the exact mispelling part. So `regex_search` is the much appropriate function to call with. 
+
+Exercises Section 17.3.1
+------------------------
+
+>Exercise 17.17: Update your program so that it finds all the words in an input sequence that violate the "ei" grammar rule.
+
+>Exercise 17.18: Revise your program to ignore words that contain "ei" but are not misspellings, such as "albeit" and "neighbor".
+
+```
+string s;
+getline(cin, s);
+
+regex re("[[:alpha:]]*[^c]ei[[:alpha:]]*", regex::icase);
+for (sregex_iterator it(s.cbegin(), s.cend(), re), end; it != end; ++it)
+{
+    cout << it->str() << endl;
+}
+```

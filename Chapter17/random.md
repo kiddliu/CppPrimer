@@ -10,7 +10,7 @@ Exercises Section 17.4.1
 
 >Exercise 17.30: Revise your function again this time to take a minimum and maximum value for numbers that the function should return.
 ```cpp
-unsigned getRandomUnsignedInt(unsigned seed, unsigned min = 0, unsigned max = numeric_limits<int>::max())
+unsigned getRandomUnsignedInt(unsigned seed, unsigned min = 0, unsigned max = numeric_limits<unsigned>::max())
 {
     static default_random_engine engine(seed);
     static uniform_int_distribution<unsigned> uniformIntDistribution(min(first, second), max(first, second));

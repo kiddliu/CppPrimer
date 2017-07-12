@@ -27,6 +27,7 @@ The type in (a) is `range_error` and in (b) it's a `exception`. If in (b) it wer
 The array p points to could not be freed as it's allocated dynamically, then a memory leak occurs.
 
 >Exercise 18.3: There are two ways to make the previous code work correctly if an exception is thrown. Describe them and implement them.
+
 (a) with try...finally
 ```cpp
 void exercise(int *b, int *e)

@@ -1,9 +1,7 @@
 Exception Handling
 ==================
-
 Exercises Section 18.1.1
 ------------------------
-
 >Exercise 18.1: What is the type of the exception object in the following `throw`s?
 >```cpp   
 >   (a) range_error r("error");
@@ -56,3 +54,21 @@ void exercise(int *b, int *e)
     // exception occurs here
 }
 ```
+Exercises Section 18.1.2
+------------------------
+>Exercise 18.4: Looking ahead to the inheritance hierarchy in Figure 18.1 (p. 783), explain what's wrong with the following `try` block. Correct it.
+>```cpp
+>   try {
+>       // use of the C++ standard library
+>   } catch (exception) {
+>       // ...
+>   } catch (const runtime_error &re) {
+>       // ...
+>   } catch (overflow_error eobj) { /* ... */ }
+>```
+
+Quote
+> Multiple `catch` clauses with types related by inheritance must be ordered from most derived type to least derived.
+
+As the image depicts, the last 2 `catch` clause will never be matched.
+![std-overflow error-inheritance.svg](http://en.cppreference.com/w/File:std-overflow_error-inheritance.svg "std-overflow error-inheritance")

@@ -46,3 +46,39 @@ cout << setw(16) << "fixed: " << fixed << setw(16) << d << endl;
 cout << setw(16) << "hexfloat: " << hexfloat << setw(16) << d << endl;
 cout << setw(16) << "defaultfloat: " << defaultfloat << setw(16) << d << endl;
 ```
+
+Exercises Section 17.5.3
+------------------------
+>Exercise 17.39: Write your own version of the seek program presented in this section.
+```cpp
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    fstream inOut("copyOut", fstream::ate | fstream::in | fstream:: out);
+    if (!inOut) return EXIT_FAILURE;
+    
+    auto end = inOut.tellg();
+    inOut.seekg(0, fstream::beg);
+    size_t length(0);
+    string line;
+    vector<size_t> result;
+    
+    while (inOut && inOut.tellg() != end
+            && getline(inOut, line)) {
+        length += line.size() + 1;
+        result.push_back(length);
+    }
+    
+    inOut.seekp(0, fstream::end);
+    for_each(result.cbegin(), result.cend(), [](const size_t &s){
+        inOut << s << " ";
+    });
+    inOut << "\n";
+    
+    return 0;
+}
+```

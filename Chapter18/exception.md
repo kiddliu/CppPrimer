@@ -70,5 +70,6 @@ Exercises Section 18.1.2
 Quote
 > Multiple `catch` clauses with types related by inheritance must be ordered from most derived type to least derived.
 
+![std-overflow error-inheritance.svg](http://upload.cppreference.com/mwiki/images/b/b6/std-overflow_error-inheritance.svg "std-overflow error-inheritance")
+
 As the image depicts, the last 2 `catch` clause will never be matched.
-![std-overflow error-inheritance.svg](http://en.cppreference.com/w/File:std-overflow_error-inheritance.svg "std-overflow error-inheritance")

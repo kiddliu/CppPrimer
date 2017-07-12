@@ -72,4 +72,40 @@ Quote
 
 ![std-overflow error-inheritance.svg](http://upload.cppreference.com/mwiki/images/b/b6/std-overflow_error-inheritance.svg "std-overflow error-inheritance")
 
-As the image depicts, the last 2 `catch` clause will never be matched.
+As the image depicts, the last 2 `catch` clauses will never be matched. Reversing the order of `catch` clauses could fix the problem. 
+
+>Exercise 18.5: Modify the following `main` function to catch any of the exception types show in Figure 18.1 (p. 783):
+>```cpp
+>   int main() {
+>       // use of the C++ standard library
+>   }
+>```
+> The handlers should print the error message associated with the exception before calling `abort` (defined in the header `cstdlib`) to terminate `main`.
+
+```cpp
+#include <cstdlib>
+
+int main() {
+    try {
+        // use of the C++ standard library
+    } catch (exception &e) {
+        cerr << e.what() <<endl;
+        abort();
+    }
+    
+    return EXIT_SUCCESS;
+}
+```
+>Exercise 18.6: Given the following exception types and `catch` clauses, write a `throw` expression that creates an exception object that can be caught by each `catch` clause:
+>```cpp
+>   (a) class exceptionType { };
+>       catch(exceptionType *pet) { }
+>   (b) catch(...) { }
+>   (c) typedef int EXCPTYPE;
+>       catch(EXCPTYPE) { }
+
+```cpp
+(a) throw new exceptionType();
+(b) throw exception();
+(c) throw 1;
+```

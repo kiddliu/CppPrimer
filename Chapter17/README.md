@@ -20,3 +20,8 @@ Section 17.4 Random Numbers
 ---------------------------
 
 [random.md](https://github.com/kiddliu/CppPrimer/blob/master/Chapter17/random.md)
+
+Section 17.5 The IO Library Revisited
+---------------------------
+
+[io.md](https://github.com/kiddliu/CppPrimer/blob/master/Chapter17/io.md)

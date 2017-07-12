@@ -46,6 +46,7 @@ void exercise(int *b, int *e)
 }
 ```
 (b) with shared_ptr
+```cpp
 void exercise(int *b, int *e)
 {
     vector<int> v(b, e);

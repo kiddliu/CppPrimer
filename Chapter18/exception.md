@@ -116,3 +116,10 @@ Exercises Section 18.1.3
 ```
 // TODO:
 ```
+Exercises Section 18.1.4
+------------------------
+>Exercise 18.8: Review the classes you've written and add appropriate exception specifications to their constructors and desctructors. If you think one of your destructors might throw, change the code so that it cannot throw.
+
+```
+// TODO:
+```

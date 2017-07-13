@@ -39,3 +39,36 @@ Quote from [this](https://stackoverflow.com/a/357427/1937578)
 mathLib::MatrixLib::matrix 
 mathLib::MatrixLib::operator*(const matrix &, const matrix &);
 ```
+
+Exercises Section 18.2.2
+------------------------
+>Exercise 18.15: Explain the differences between `using` declarations and directives.
+
+Quote:
+
+>A **using declaration** introduces only one namespace member at a time. It allows us to be very specific regarding which names are used in our programs.
+>
+>A **using directive**, like a `using` declaration, allows us to use the unqualified form of a namespace name. Unlike a `using` declaration, we retain no control over which names are made visible...they all are.
+
+>Exercise 18.16: Explain the following code assuming `using` declarations for all the members of namespace `Exercise` are located at the location labeled *position 1*. What if the they appear at *position 2* instead? Now answer the same question but replace the `using` declearations with a `using` directive for namespace Exercise.
+>```cpp
+>    namespace Exercise {
+>        int ivar = 0;
+>        double dvar = 0;
+>        const int limit = 1000;
+>    }
+>    int ivar = 0;
+>    // position 1
+>    void manip() {
+>        // position 2
+>        double dvar = 3.1416;
+>        int iobj = limit + 1;
+>        ++ivar;
+>        ++::ivar;
+>```
+
+>Exercise 18.17: Write code to test your answers to the previous question.
+
+With `using` declarations of all the members of namespace `Exercise` at position 1, the declaration of `ivar` is already in scope then it's an error. If the declarations go to position 2, the declaration of `dvar` is already in scope then it's an error.
+
+By switching from using declaration to using directive at position 1, `ivar` is ambiguous; if the directive goes to position 2, it's still the same problem.

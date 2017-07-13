@@ -109,3 +109,10 @@ int main() {
 (b) throw exception();
 (c) throw 1;
 ```
+Exercises Section 18.1.3
+------------------------
+>Exercise 18.7: Define your `Blob` and `BlobPtr` classes from Chapter 16 to use function `try` blocks for their constructors.
+
+```
+// TODO:
+```

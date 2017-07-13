@@ -138,13 +138,13 @@ Exercises Section 18.2.4
 >```
 >What would happen if the `using` declaration were located in `main` before the call to `compute`? Answer the same questions as before.
 ```cpp
-	void compute();							// candidate, not viable
-	void compute(const void*);				// candidate, viable, casting int to void*, const is ignored
-	void compute(int);						// candidate, viable, no conversion required
-	void compute(double, double = 3.4);		// candidate, viable, casting int to double
-	void compute(char*, char* = 0)			// candidate, viable, casting int to char*
+	void compute(); // candidate, not viable
+	void compute(const void*); // candidate, viable, casting int to void*, const is ignored
+	void compute(int); // candidate, viable, no conversion required
+	void compute(double, double = 3.4); // candidate, viable, casting int to double
+	void compute(char*, char* = 0) // candidate, viable, casting int to char*
 	
 	// if `using` declaration were located in `main`
-	void compute();							// candidate, not viable
-	void compute(const void*);				// candidate, viable, casting int to void*, const is ignored
+	void compute(); // candidate, not viable
+	void compute(const void*); // candidate, viable, casting int to void*, const is ignored
 ```

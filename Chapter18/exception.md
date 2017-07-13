@@ -123,3 +123,38 @@ Exercises Section 18.1.4
 ```
 // TODO:
 ```
+Exercises Section 18.1.4
+------------------------
+>Exercise 18.9: Define the bookstore exception classes described in this section and rewrite your `Sales_data` compound assignment operator to throw an exception.
+
+The code on p. 783 and p. 784 are good to answer this question.
+
+>Exercise 18.10: Write a program that uses the `Sales_data` addition operator on objects that have differing `ISBN`s. Write two versions of the program: one that handles the exception and one that does not. Compare the behavior of the programs so that you become familiar with what happens when an uncaught exception occurs.
+
+```cpp
+Sales_data &
+accumulate(const Sales_data &first, const Sales_data &second)
+{
+    Sales_data result = first;
+    result += second;
+    
+    return result;
+}
+
+Sales_data &
+accumulate(const Sales_data &first, const Sales_data &second) noexcept
+{
+    Sales_data result = first;
+    try {
+        result += second;
+    } catch (isbn_mismatch) {
+        // if isbn mismatches, returns the first object
+    }
+    
+    return result;
+}
+```
+
+>Exercise 18.11: Why is it important that the `what` function doesn't throw?
+
+Member function `what` usually is called in a `catch` block and if it throws an exception, the recovery procedure specified in this `catch` block breaks and usually it's not an expect behavior.

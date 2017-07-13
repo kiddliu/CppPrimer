@@ -72,3 +72,49 @@ Quote:
 With `using` declarations of all the members of namespace `Exercise` at position 1, the declaration of `ivar` is already in scope then it's an error. If the declarations go to position 2, the declaration of `dvar` is already in scope then it's an error.
 
 By switching from using declaration to using directive at position 1, `ivar` is ambiguous; if the directive goes to position 2, it's still the same problem.
+
+Exercises Section 18.2.3
+------------------------
+>Exercise 18.18: Given the following typical definition of swap § 13.3 (p. 517), determine which version of swap is used if `mem1` is a `string`. What if `mem1` is an `int`? Explain how name lookup works in both cases.
+>```cpp
+>    void swap(T v1, T v2)
+>    {
+>        using std::swap;
+>        swap(v1.mem1, v2.mem1);
+>        // swap remaining members of type T
+>    }
+>```
+The compiler searches for the qualified name in reverse order, then it checks the `using` declaration and finds the template function `swap`. If `mem1` is of type `string`, the compiler finds the best overloaded specialization
+```cpp
+template< class CharT, class Traits, class Alloc >
+void swap( std::basic_string<CharT, Traits, Alloc> &lhs,
+           std::basic_string<CharT, Traits, Alloc> &rhs );
+```
+; if `int` is the case, it finds no specialization at all and loads the default implementation which utilizes `std::move(__val)`
+```cpp
+  /**
+   *  @brief Swaps two values.
+   *  @param  __a  A thing of arbitrary type.
+   *  @param  __b  Another thing of arbitrary type.
+   *  @return   Nothing.
+  */
+  template<typename _Tp>
+    inline void
+    swap(_Tp& __a, _Tp& __b)
+#if __cplusplus >= 201103L
+    noexcept(__and_<is_nothrow_move_constructible<_Tp>,
+	            is_nothrow_move_assignable<_Tp>>::value)
+#endif
+    {
+      // concept requirements
+      __glibcxx_function_requires(_SGIAssignableConcept<_Tp>)
+
+      _Tp __tmp = _GLIBCXX_MOVE(__a);
+      __a = _GLIBCXX_MOVE(__b);
+      __b = _GLIBCXX_MOVE(__tmp);
+    }
+```
+
+>Exercise 18.19: What if the call to `swap` was `std::swap(v1.mem1, v2.mem1)`?
+
+The compiler skips the name searching steps and finds the best overloaded function directly to compile.

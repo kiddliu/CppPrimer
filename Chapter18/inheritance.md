@@ -173,6 +173,7 @@ Exercises Section 18.3.5
 >(c) Which of the following assignments is a compile-time error?
 >
 >    `Base *pb;     Class *pc;      MI *pmi;        D2 *pd2;`
+>
 >(a) pb = new Class;    (b) pc = new Final;     (c) pmi = pb;       (d) pd2 = pmi;
 
 (a) The order of constructors is Class -> Base -> D1 -> D2 -> MI -> Class

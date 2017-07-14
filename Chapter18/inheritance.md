@@ -126,3 +126,29 @@ The intention is to call `void print(int) const;` but `as always, name lookup ha
 (d) `if (dvec.size() != 0) Base::fval = dvec.back();`
 
 (e) `if (sval.size() != 0) Base1::cval = sval.front();`
+
+Exercises Section 18.3.4
+------------------------
+>Exercise 18.28: Given the following class hierarchy, which inherited members can be accessed without qualification from within the `VMI` class? Which require qualification? Explain your reasoning.
+>```cpp
+>    struct Base {
+>        void bar(int); // public by default
+>    protected:
+>        int ival;
+>    }
+>    struct Derived1 : virtual public Base {
+>        void bar(char); // public by default
+>        void foo(char);
+>    protected:
+>        char cval;
+>    }
+>    struct Derived2 : virtual public Base {
+>        void foo(int); // public by default
+>    protected:
+>        int ival;
+>        char cval;
+>    }
+>    class WMI : public Derived1, public Derived2 { };
+>```
+
+`int ival` can be accessed without qualificatoin because it's a member of Derived2 but not of Derived1, there is no ambiguity. `char cval` does require qualification as it's a member of both derived classes.

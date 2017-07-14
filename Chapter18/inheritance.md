@@ -151,4 +151,32 @@ Exercises Section 18.3.4
 >    class WMI : public Derived1, public Derived2 { };
 >```
 
-`int ival` can be accessed without qualificatoin because it's a member of Derived2 but not of Derived1, there is no ambiguity. `char cval` does require qualification as it's a member of both derived classes.
+`int ival` and `bar` can be accessed without qualificatoin because it's a member of Derived2 but not of Derived1, there is no ambiguity. `char cval` and `foo` do require qualification as it's a member of both derived classes. 
+
+
+Exercises Section 18.3.5
+------------------------
+>Exercise 18.29: Given the following class hierarchy:
+>```cpp
+>    class Class { ... };
+>    class Base : public Class { ... };
+>    class D1 : virtual public Base { ... };
+>    class D2 : virtual public Base { ... };
+>    class MI : public D1, public D2 { ... };
+>    class Final : public MI, public Class { ... };
+>```
+>
+>(a) In what order are contructors and destructors run on a `Final` object?
+>
+>(b) A `Final` object has how many `Base` parts? How many `Class` parts?
+>
+>(c) Which of the following assignments is a compile-time error?
+>
+>    `Base *pb;     Class *pc;      MI *pmi;        D2 *pd2;`
+>(a) pb = new Class;    (b) pc = new Final;     (c) pmi = pb;       (d) pd2 = pmi;
+
+(a) The order of constructors is Class -> Base -> D1 -> D2 -> MI -> Class
+
+(b) 1 `Base` object and 2 `Class` objects
+
+(c) `pb = new Class` and `pmi = pb` are compile-time errors, a base-type object cannot be pointed by a pointer pointing to its derived class.

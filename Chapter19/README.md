@@ -141,4 +141,4 @@ after : std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<
 
 (b) A*
 
-(c) B. PS: when I try to print the human-friendly type name with foo function template in the previous answer, it outputs A and it apparently lose the reference when deducing the type. Fixed it by changing the function parameter type to `T&&`
+(c) B. PS: when I try to print the human-friendly type name with `foo` function template in the previous answer, it outputs `A` and it apparently lose the reference information when deducing the type. Fixed it by changing the function parameter type to `T&&`

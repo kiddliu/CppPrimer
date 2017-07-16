@@ -18,21 +18,21 @@ Section 19.2 Run-Time Type Identification
 -----------------------------------------
 
 >Exercise 19.3: Given the following class hierarchy in which each class defines a `public` default constructor and virtual destructor:
-```cpp
-    class A { /* ... */ };
-    class B : public A { /* ... */ };
-    class C : public B { /* ... */ };
-    class D : public B, public A { /* ... */ };
-```
+>```cpp
+>    class A { /* ... */ };
+>    class B : public A { /* ... */ };
+>    class C : public B { /* ... */ };
+>    class D : public B, public A { /* ... */ };
+>```
 which, if any, of the following `dynamic_cast`s fail?
-```cpp
-    (a) A *pa = new C;
-        B *pb = dynamic_cast<B*>(pa);
-    (b) B *pb = new B;
-        C *pc = dynamic_cast<C*>(pb);
-    (c) A *pa = new D;
-        B *pb = dynamic_cast<B*>(pa);
-```
+>```cpp
+>    (a) A *pa = new C;
+>        B *pb = dynamic_cast<B*>(pa);
+>    (b) B *pb = new B;
+>        C *pc = dynamic_cast<C*>(pb);
+>    (c) A *pa = new D;
+>        B *pb = dynamic_cast<B*>(pa);
+>```
 
 (a) Success
 
@@ -41,13 +41,13 @@ which, if any, of the following `dynamic_cast`s fail?
 (c) Success. PS: by the definition of the code, there's ambiguous and it can be fixed by making class A inheritance declaration virtual.
 
 > Exercise 19.4: Using the classes defined in the first exercise, rewrite the following code to convert the expression `*pa` to the type `C&`:
-```cpp
-    if (C *pc = dynamic_cast<C*>(pa)) {
-        // use C's members
-    } else {
-        // use A's members
-    }
-```
+>```cpp
+>    if (C *pc = dynamic_cast<C*>(pa)) {
+>        // use C's members
+>    } else {
+>        // use A's members
+>    }
+>```
 
 ```cpp
     A* pa = new c;

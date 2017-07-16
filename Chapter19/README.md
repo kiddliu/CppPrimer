@@ -24,7 +24,7 @@ Section 19.2 Run-Time Type Identification
 >    class C : public B { /* ... */ };
 >    class D : public B, public A { /* ... */ };
 >```
-which, if any, of the following `dynamic_cast`s fail?
+>which, if any, of the following `dynamic_cast`s fail?
 >```cpp
 >    (a) A *pa = new C;
 >        B *pb = dynamic_cast<B*>(pa);

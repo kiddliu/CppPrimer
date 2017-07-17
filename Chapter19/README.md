@@ -186,3 +186,26 @@ using AvgPrice = double Sales_data::*;
 using GetChar = char Sales_data::*;
 using GetByPos = char (Sales_data::*)(pos, pos);
 ```
+
+>Exercise 19.18: Write a function that uses `count_if` to count how many empty `string`s there are in a give `vector`.
+
+```cpp
+std::vector<std::string> vector;
+count_if(vector.cbegin(), vector.cend(), mem_fn(&std::string::emtpy));
+```
+>Function template `std::mem_fn` generates wrapper objects for pointers to members, which can store, copy, and invoke a pointer to member. Both references and pointers (including smart pointers) to an object can be used when invoking a `std::mem_fn`.
+
+>Exercise 19.19: Write a function that takes a `vector<Sales_data>` and finds the first element whose average price is greater than some given amount.
+
+```cpp
+std::vector<Sales_data>::iterator firstElement(const std::vector<Sales_data> &source)
+{
+    return find_if(source.cbegin(), source.cend(), [](Sales_data &item) { item.avg_price() > amount; });
+}
+```
+
+>Exercise 19.20: Nest your `QueryResult` class inside `TextQuery` and rerun the programs you wrote to use `TextQuery` in § 12.3.2 (p. 490)
+
+```cpp
+    // TODO
+```

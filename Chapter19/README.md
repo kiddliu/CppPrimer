@@ -143,6 +143,9 @@ after : std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<
 
 (c) B. PS: when I try to print the human-friendly type name with `foo` function template in the previous answer, it outputs `A` and it apparently lose the reference information when deducing the type. Fixed it by changing the function parameter type to `T&&`
 
+Section 19.4 Pointer to Class Member
+------------------------------------
+
 >Exercise 19.11: What is the difference between an ordinary data pointer and a pointer to a data member?
 
 Quote:
@@ -204,8 +207,85 @@ std::vector<Sales_data>::iterator firstElement(const std::vector<Sales_data> &so
 }
 ```
 
+Section 19.5 Nested Classes
+---------------------------
+
 >Exercise 19.20: Nest your `QueryResult` class inside `TextQuery` and rerun the programs you wrote to use `TextQuery` in § 12.3.2 (p. 490)
 
 ```cpp
     // TODO
 ```
+
+Section 19.6 `union`: A Space-Saving Class
+------------------------------------------
+
+>Exercise 19.21: Write your own version of the `Token` class.
+>Exercise 19.22: Add a member of type `Sales_data` to your `Token` class.
+>Exercise 19.23: Aadd a move constructor and move assignment to `Token`.
+>Exercise 19.24: Explain what happens if we assign a `Token` object to itself.
+>Exercise 19.25: Write assignment operators that take values of each type in the `union`.
+
+```cpp
+class Token {
+public:
+    Token() : tok(INT), ival(0) { }
+    Token(const Token &t) : tok(t.tok) { copyUnion(t); }
+    Token &operator=(const Token&);
+    ~Token() { if (tok == STR) sval.~string(); }
+    Token &operator=(const std::string&);
+    Token &operator=(char c) {
+        if (tok == STR) sval.~string();
+        if (tok == SD) sdval.~Sales_data();
+        
+        cval = c;
+        tok = CHAR;
+        return *this;
+    }
+    Token &operator=(int);
+    Token &operator=(double d) {
+        if (tok == STR) sval.~string();
+        if (tok == SD) sdval.~Sales_data();
+        
+        dval = d;
+        tok = DBL;
+        return *this;
+    }
+    Token &operator=(const Sales_data &sd) {
+        if (tok == SD)
+            sdval = sd;
+        else
+            new(&sdval) Sales_data(sd);
+        
+        tok = SD;
+        return *this;
+    }
+    
+    Token(Token&& t) { moveUnion(t); }
+    Token& operator=(Token &&other) {
+        moveUnion(t);
+        return *this;
+    }
+}
+private:
+    enum { INT, CHAR, DBL, STR, SD } tok;
+    union {
+        char cval;
+        int ival;
+        double dval;
+        std::string sval;
+        Sales_data sdval;
+    };
+    void copyUnion(const Token&);
+    void moveUnion(Token &&token) {
+        switch (token.tok) {
+            case Token::INT: ival = std::move(token.ival);
+            case Token::CHAR: cval = std::move(token.cval);
+            case Token::DBL: dval = std::move(token.dval);
+            case Token::STR: sval = std::move(token.sval);
+            case Token::SD: sdval = std::move(token.sdval);
+        }
+    }
+};
+```
+
+For 24, if `Token` supports only copy assignment, the constructor determines the value it holds and copy the value to the new object; otherwise it supports move assignment, the constructor just moves the value to the new object.

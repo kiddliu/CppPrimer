@@ -142,3 +142,47 @@ after : std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<
 (b) A*
 
 (c) B. PS: when I try to print the human-friendly type name with `foo` function template in the previous answer, it outputs `A` and it apparently lose the reference information when deducing the type. Fixed it by changing the function parameter type to `T&&`
+
+>Exercise 19.11: What is the difference between an ordinary data pointer and a pointer to a data member?
+
+Quote:
+> Normally a pointer points to an object, but a pointer to member identifies a member of a class, not an object of that class. It embodies both the type of a class and the type of a member of that class.
+
+>Exercise 19.12: Define a pointer to member that can point to the `cursor` member of class `Screen`. Fetch the value of `Screen::cursor` through that pointer.
+
+```cpp
+    const pos Screen::*pCursor = &Screen::cursor;
+    Screen screen;
+    pos cursor = screen.*pCursor;
+```
+
+>Exercise 19.13: Define the type that can represent a pointer to the `bookNo` member of the `Sales_data` class.
+
+```cpp
+typedef std::string Sales_data::* MemberPtr;
+```
+
+>Exercise 19.14: Is the following code legal? If so, what does it do? If not, why?
+>```cpp
+>    auto pmf = &Screen::get_cursor;
+>    pmf = &Screen::get;
+>```
+
+Legal, cause the signature is exactly the same.
+
+>Exercise 19.15: What is the difference between an ordinary function pointer and a pointer to a member function?
+
+An ordinary pointer is just a pointer to a function, whereas a pointer to a member function is a function pointer that specifically points to a class member function. It's declared using _classname_::*.
+
+>Exercise 19.16: Write a type alias that is a synonym for a pointer that can point to the `avg_price` member of `Sales_data`.
+
+```cpp
+using AvgPrice = double Sales_data::*;
+```
+
+>Exercise 19.17: Define a type alias for each distinct `Screen` member function type.
+
+```cpp
+using GetChar = char Sales_data::*;
+using GetByPos = char (Sales_data::*)(pos, pos);
+```

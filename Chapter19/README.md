@@ -220,9 +220,13 @@ Section 19.6 `union`: A Space-Saving Class
 ------------------------------------------
 
 >Exercise 19.21: Write your own version of the `Token` class.
+>
 >Exercise 19.22: Add a member of type `Sales_data` to your `Token` class.
+>
 >Exercise 19.23: Aadd a move constructor and move assignment to `Token`.
+>
 >Exercise 19.24: Explain what happens if we assign a `Token` object to itself.
+>
 >Exercise 19.25: Write assignment operators that take values of each type in the `union`.
 
 ```cpp

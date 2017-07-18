@@ -293,3 +293,11 @@ private:
 ```
 
 For 24, if `Token` supports only copy assignment, the constructor determines the value it holds and copy the value to the new object; otherwise it supports move assignment, the constructor just moves the value to the new object.
+
+>Exercise 19.26: Explain these declarations and indicate whether they are legal:
+>```cpp
+>    extern "C" int compute(int *, int);
+>    extern "C" double compute(double *, double);
+>```
+
+`error: functions that differ only in their return type cannot be overloaded`
